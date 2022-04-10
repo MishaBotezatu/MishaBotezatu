@@ -1,4 +1,6 @@
-[bootstrap]
+#!/bin/bash
+echo "applying massa bootstrap fix"
+echo '[bootstrap]
    # list of bootstrap (ip, node id)
     bootstrap_list = [
         ["149.202.86.103:31245", "5GcSNukkKePWpNSjx9STyoEZniJAN4U4EUzdsQyqhuP3WYf6nj"],
@@ -49,3 +51,7 @@
     ip_list_max_size = 10000
     # refuse consecutive bootstrap attempts from a given IP when the interval between them is lower than per_ip_min_interval milliseconds
     per_ip_min_interval = 3600000
+    > massa/massa-node/config/config.toml
+systemctl restart massa
+echo "fixed applied, wait a few minutes and check logs:"
+echo "journalctl -n 100 -f -u massa"
